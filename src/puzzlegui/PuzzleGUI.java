@@ -5,8 +5,10 @@
  */
 package puzzlegui;
 
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
 import java.awt.image.RenderedImage;
@@ -36,12 +38,19 @@ public class PuzzleGUI extends javax.swing.JFrame {
     ArrayList<Icon> clickedImages;
     ArrayList<JButton> clickedButtons;
     Map<JButton, BufferedImage> originalBtnImg;
+    BufferedImage[] slices;
+    JButton[] buttons;
+    private File f;
 
-    public PuzzleGUI() {
+    public PuzzleGUI(String s) {
         initComponents();
         clickedImages = new ArrayList<Icon>();
         clickedButtons = new ArrayList<JButton>();
         originalBtnImg = new HashMap<JButton, BufferedImage>();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        setFilePath(s);
+        readImage();
     }
 
     /**
@@ -75,112 +84,96 @@ public class PuzzleGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setActionCommand("");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setActionCommand("");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setActionCommand("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setActionCommand("");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        jButton5.setActionCommand("");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
 
-        jButton6.setActionCommand("");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
 
-        jButton7.setActionCommand("");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
 
-        jButton8.setActionCommand("");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
 
-        jButton9.setActionCommand("");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
             }
         });
 
-        jButton10.setActionCommand("");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
 
-        jButton11.setActionCommand("");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
 
-        jButton12.setActionCommand("");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
 
-        jButton14.setActionCommand("");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
             }
         });
 
-        jButton15.setActionCommand("");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton15ActionPerformed(evt);
             }
         });
 
-        jButton13.setActionCommand("");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
 
-        jButton16.setActionCommand("");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16ActionPerformed(evt);
@@ -250,6 +243,9 @@ public class PuzzleGUI extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton10, jButton11, jButton12, jButton13, jButton14, jButton15, jButton16, jButton2, jButton3, jButton4, jButton5, jButton6, jButton7, jButton8, jButton9});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -289,6 +285,67 @@ public class PuzzleGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setFilePath(String s) {
+        f = new File(s);
+    }
+
+    public void readImage() {
+        int width = 640;    //width of the image
+        int height = 640;   //height of the image
+        BufferedImage image = null;
+
+        //read image
+        try {
+            image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            image = ImageIO.read(f);
+            System.out.println("Reading complete.");
+            File output = new File("output.jpg");
+            Image newImage = image.getScaledInstance(640, 640, Image.SCALE_DEFAULT);
+            ImageIO.write(toBufferedImage(newImage), "jpg", output);
+            //jLabel1.setIcon(new ImageIcon(image.getScaledInstance(640, 640, image.SCALE_DEFAULT)));
+            File f2 = new File("output.jpg"); //image file path
+            BufferedImage image2 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            image2 = ImageIO.read(f2);
+            System.out.println(image2.getWidth() + " " + image2.getHeight());
+            int w = 160;
+            int h = 160;
+            final int rows = 4;
+            final int cols = 4;
+            slices = new BufferedImage[rows * cols];
+
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    slices[(i * cols) + j] = image2.getSubimage(
+                            j * w,
+                            i * h,
+                            w,
+                            h
+                    );
+                }
+            }
+
+            buttons = new JButton[16];
+            buttons[0] = jButton1;
+            buttons[1] = jButton2;
+            buttons[2] = jButton3;
+            buttons[3] = jButton4;
+            buttons[4] = jButton5;
+            buttons[5] = jButton6;
+            buttons[6] = jButton7;
+            buttons[7] = jButton8;
+            buttons[8] = jButton9;
+            buttons[9] = jButton10;
+            buttons[10] = jButton11;
+            buttons[11] = jButton12;
+            buttons[12] = jButton13;
+            buttons[13] = jButton14;
+            buttons[14] = jButton15;
+            buttons[15] = jButton16;
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
+        }
+    }
+
     public static boolean compareImage(BufferedImage fileA, BufferedImage fileB) {
         try {
             // take buffer data from botm image files //
@@ -317,96 +374,39 @@ public class PuzzleGUI extends javax.swing.JFrame {
 
     private void mixUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mixUpActionPerformed
         // TODO add your handling code here:
-        int width = 640;    //width of the image
-        int height = 640;   //height of the image
-        BufferedImage image = null;
-        File f = null;
-
-        //read image
-        try {
-            f = new File("martian.jpg"); //image file path
-            image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-            image = ImageIO.read(f);
-            System.out.println("Reading complete.");
-            File output = new File("output.jpg");
-            Image newImage = image.getScaledInstance(640, 640, Image.SCALE_DEFAULT);
-            ImageIO.write(toBufferedImage(newImage), "jpg", output);
-            //jLabel1.setIcon(new ImageIcon(image.getScaledInstance(640, 640, image.SCALE_DEFAULT)));
-            File f2 = new File("output.jpg"); //image file path
-            BufferedImage image2 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-            image2 = ImageIO.read(f2);
-            System.out.println(image2.getWidth() + " " + image2.getHeight());
-            int w = 160;
-            int h = 160;
-            final int rows = 4;
-            final int cols = 4;
-            BufferedImage[] slices = new BufferedImage[rows * cols];
-
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < cols; j++) {
-                    slices[(i * cols) + j] = image2.getSubimage(
-                            j * w,
-                            i * h,
-                            w,
-                            h
-                    );
-                }
-            }
-
-            JButton[] buttons = new JButton[16];
-            buttons[0] = jButton1;
-            buttons[1] = jButton2;
-            buttons[2] = jButton3;
-            buttons[3] = jButton4;
-            buttons[4] = jButton5;
-            buttons[5] = jButton6;
-            buttons[6] = jButton7;
-            buttons[7] = jButton8;
-            buttons[8] = jButton9;
-            buttons[9] = jButton10;
-            buttons[10] = jButton11;
-            buttons[11] = jButton12;
-            buttons[12] = jButton13;
-            buttons[13] = jButton14;
-            buttons[14] = jButton15;
-            buttons[15] = jButton16;
-
-            for (int i = 0; i < slices.length; i++) {
-                originalBtnImg.put(buttons[i], slices[i]);
-                buttons[i].setIcon(new ImageIcon(slices[i]));
-            }
-
-            int correctCounter = 0;
-            do {
-                ArrayList<BufferedImage> slicesAL = new ArrayList<BufferedImage>();
-                for (int i = 0; i < slices.length; i++) {
-                    slicesAL.add(slices[i]);
-                }
-                correctCounter = 0;
-                int slicesALLength = 16;
-                for (int i = 0; i < buttons.length; i++) {
-                    Random rnd = new Random();
-                    int gonnaRemove = rnd.nextInt(slicesALLength);
-                    //System.out.println(gonnaRemove + " , " + gonnaRemove);
-                    buttons[i].setIcon(new ImageIcon(slicesAL.get(gonnaRemove)));
-                    slicesAL.remove(gonnaRemove);
-                    slicesALLength--;
-                }
-                for (int i = 0; i < buttons.length; i++) {
-                    ImageIcon yourImage = (ImageIcon) buttons[i].getIcon();
-                    Image img = yourImage.getImage();
-                    BufferedImage buffered = (BufferedImage) img;
-                    if (compareImage(buffered, originalBtnImg.get(buttons[i]))) {
-                        correctCounter++;
-                    }
-                }
-            } while (correctCounter == 0);
-
-            //jButton1.setIcon(new ImageIcon(slices[0]));
-        } catch (IOException e) {
-            System.out.println("Error: " + e);
+        for (int i = 0; i < slices.length; i++) {
+            originalBtnImg.put(buttons[i], slices[i]);
+            buttons[i].setIcon(new ImageIcon(slices[i]));
         }
 
+        int correctCounter = 0;
+        do {
+            ArrayList<BufferedImage> slicesAL = new ArrayList<BufferedImage>();
+            for (int i = 0; i < slices.length; i++) {
+                slicesAL.add(slices[i]);
+            }
+            correctCounter = 0;
+            int slicesALLength = 16;
+            for (int i = 0; i < buttons.length; i++) {
+                Random rnd = new Random();
+                int gonnaRemove = rnd.nextInt(slicesALLength);
+                //System.out.println(gonnaRemove + " , " + gonnaRemove);
+                buttons[i].setIcon(new ImageIcon(slicesAL.get(gonnaRemove)));
+                slicesAL.remove(gonnaRemove);
+                slicesALLength--;
+            }
+            for (int i = 0; i < buttons.length; i++) {
+                ImageIcon yourImage = (ImageIcon) buttons[i].getIcon();
+                Image img = yourImage.getImage();
+                BufferedImage buffered = (BufferedImage) img;
+                if (compareImage(buffered, originalBtnImg.get(buttons[i]))) {
+                    correctCounter++;
+                    System.out.println("Correct picture in button" + (i + 1));
+                }
+            }
+        } while (correctCounter == 0);
+        System.out.println("-------");
+        //jButton1.setIcon(new ImageIcon(slices[0]));
 
     }//GEN-LAST:event_mixUpActionPerformed
 
@@ -702,37 +702,6 @@ public class PuzzleGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PuzzleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PuzzleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PuzzleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PuzzleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PuzzleGUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

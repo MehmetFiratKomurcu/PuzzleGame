@@ -5,24 +5,29 @@
  */
 package puzzlegui;
 
+import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.commons.io.FilenameUtils;
+
 /**
  *
  * @author MehmetFirat
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class PickPicture extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public NewJFrame() {
+    public PickPicture() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
 
     /**
@@ -39,73 +44,71 @@ public class NewJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Browse");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel1.setText("Please select your picture:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(62, 62, 62))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    public ImageIcon ResizeImage(String ImagePath)
-    {
+
+    public ImageIcon ResizeImage(String ImagePath) {
         ImageIcon MyImage = new ImageIcon(ImagePath);
         Image img = MyImage.getImage();
         Image newImg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newImg);
         return image;
     }
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFileChooser file = new JFileChooser();
-        file.setCurrentDirectory(new File(System.getProperty("user.home")));
-         FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg","png");
-         file.addChoosableFileFilter(filter);
-         file.setAcceptAllFileFilterUsed(false);
-         int result = file.showSaveDialog(null);
-           //if the user click on save in Jfilechooser
-          if(result == JFileChooser.APPROVE_OPTION){
-              System.out.println("you chose to open this file: " + file.getSelectedFile().getName());
-              String extension = FilenameUtils.getExtension(file.getSelectedFile().getName());
-              if(!extension.equalsIgnoreCase("jpg") && !extension.equalsIgnoreCase("png")) {
-                  JOptionPane.showMessageDialog(null, "Invalid file extension.");
-              }else{
-                  File selectedFile = file.getSelectedFile();
+        file.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "png");
+        file.addChoosableFileFilter(filter);
+        file.setAcceptAllFileFilterUsed(false);
+        int result = file.showSaveDialog(null);
+        //if the user click on save in Jfilechooser
+        if (result == JFileChooser.APPROVE_OPTION) {
+            System.out.println("You chose to open this file: " + file.getSelectedFile().getName());
+            String extension = FilenameUtils.getExtension(file.getSelectedFile().getName());
+            if (!extension.equalsIgnoreCase("jpg") && !extension.equalsIgnoreCase("png")) {
+                JOptionPane.showMessageDialog(null, "Invalid file extension.");
+            } else {
+                File selectedFile = file.getSelectedFile();
                 String path = selectedFile.getAbsolutePath();
-                jLabel1.setIcon(ResizeImage(path));
-                System.out.println("abc");
-              }
-          } else if(result == JFileChooser.CANCEL_OPTION){
-              System.out.println("No File Select");
-          }      
+                //jLabel1.setIcon(ResizeImage(path));
+                new PuzzleGUI(path).setVisible(true);
+                dispose();
+            }
+        } else if (result == JFileChooser.CANCEL_OPTION) {
+            System.out.println("No File Select");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -125,20 +128,21 @@ public class NewJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PickPicture.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PickPicture.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PickPicture.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PickPicture.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+                new PickPicture().setVisible(true);
             }
         });
     }
