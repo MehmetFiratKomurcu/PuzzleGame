@@ -64,6 +64,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
         usernamelb.setText("Username: " + scoreClass.getUsername());
         scorelb.setText("Score: " + scoreClass.getScore());
         highscorelb.setText("High Score: " + scoreClass.getHighScore());
+        faillb.setText("Total failture: " + failture);
     }
 
     /**
@@ -96,104 +97,122 @@ public class PuzzleGUI extends javax.swing.JFrame {
         usernamelb = new javax.swing.JLabel();
         scorelb = new javax.swing.JLabel();
         highscorelb = new javax.swing.JLabel();
+        faillb = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 160));
 
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 160, 160));
 
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 160, 160));
 
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, 160, 160));
 
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 160, 160));
 
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 160, 160));
 
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 160, 160));
 
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 160, 160));
 
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 160, 160));
 
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 160, 160));
 
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 160, 160));
 
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 160, 160));
 
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 480, 160, 160));
 
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton15ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 480, 160, 160));
 
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 160, 160));
 
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 160, 160));
 
         mixUp.setText("Mix");
         mixUp.setActionCommand("");
@@ -202,108 +221,28 @@ public class PuzzleGUI extends javax.swing.JFrame {
                 mixUpActionPerformed(evt);
             }
         });
+        getContentPane().add(mixUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 160, 69));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 704, -1, -1));
 
         usernamelb.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        usernamelb.setForeground(new java.awt.Color(51, 51, 255));
         usernamelb.setText("jLabel2");
+        getContentPane().add(usernamelb, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 650, -1, -1));
 
         scorelb.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        scorelb.setForeground(new java.awt.Color(255, 153, 0));
         scorelb.setText("jLabel3");
+        getContentPane().add(scorelb, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 670, -1, -1));
 
         highscorelb.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        highscorelb.setForeground(new java.awt.Color(0, 204, 0));
         highscorelb.setText("jLabel4");
+        getContentPane().add(highscorelb, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 690, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(mixUp, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usernamelb)
-                            .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(scorelb)
-                            .addComponent(highscorelb))))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(212, 212, 212)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton10, jButton11, jButton12, jButton13, jButton14, jButton15, jButton16, jButton2, jButton3, jButton4, jButton5, jButton6, jButton7, jButton8, jButton9});
-
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(mixUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(usernamelb)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scorelb)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(highscorelb))))
-        );
+        faillb.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        faillb.setForeground(new java.awt.Color(255, 0, 0));
+        faillb.setText("jLabel2");
+        getContentPane().add(faillb, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 675, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -401,7 +340,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
         }
         System.out.println("Sum of correct parts : " + sumOfCorrectParts);
         System.out.println("Sum of local correct parts : " + sumOfCorrectPartsLocal);
-        System.out.println("Total failture: " + failture);
+        System.out.println("Total failtureture: " + failture);
         System.out.println("------------");
         if(sumOfCorrectPartsLocal > sumOfCorrectParts){  
             if(failture == 0)
@@ -478,6 +417,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
         }else{
             highscorelb.setText("High Score: " + scoreClass.getHighScore());
         }
+        faillb.setText("Total failture: " + failture);
         scoreClass.writeFile();
     }
 
@@ -516,6 +456,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
         }else{
             highscorelb.setText("High Score: " + scoreClass.getHighScore());
         }
+        faillb.setText("Total failture: " + failture);
         if (isSolved()) {
             finalizePuzzle();
         }
@@ -565,6 +506,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
         }else{
             highscorelb.setText("High Score: " + scoreClass.getHighScore());
         }
+        faillb.setText("Total failture: " + failture);
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].setEnabled(true);
         }
@@ -573,245 +515,98 @@ public class PuzzleGUI extends javax.swing.JFrame {
         //jButton1.setIcon(new ImageIcon(slices[0]));
     }//GEN-LAST:event_mixUpActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        clickedButtons.add(jButton1);
+    private void swapParts(){
         if (clickedButtons.size() > 2) {
             clickedButtons.clear();
         }
 
-        if (clickedButtons.size() == 2) {
+        if (clickedButtons.size() == 2 && clickedButtons.get(0) != clickedButtons.get(1)) {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
             controlCorrectParts();
             clickedButtons.clear();
         }
-
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        clickedButtons.add(jButton1);
+        swapParts();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         clickedButtons.add(jButton2);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         clickedButtons.add(jButton3);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         clickedButtons.add(jButton4);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         clickedButtons.add(jButton5);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         clickedButtons.add(jButton6);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         clickedButtons.add(jButton7);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         clickedButtons.add(jButton8);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         clickedButtons.add(jButton9);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         clickedButtons.add(jButton10);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         clickedButtons.add(jButton11);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         clickedButtons.add(jButton12);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         clickedButtons.add(jButton13);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         clickedButtons.add(jButton14);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         clickedButtons.add(jButton15);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         clickedButtons.add(jButton16);
-        if (clickedButtons.size() > 2) {
-            clickedButtons.clear();
-        }
-
-        if (clickedButtons.size() == 2) {
-            Icon temp = clickedButtons.get(0).getIcon();
-            clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
-            clickedButtons.get(1).setIcon(temp);
-            controlCorrectParts();
-            clickedButtons.clear();
-        }
+        swapParts();
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private static BufferedImage toBufferedImage(Image img) {
@@ -829,6 +624,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel faillb;
     private javax.swing.JLabel highscorelb;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
