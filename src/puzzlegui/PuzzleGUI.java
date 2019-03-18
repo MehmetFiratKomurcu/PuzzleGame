@@ -24,6 +24,7 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import sun.awt.image.ToolkitImage;
 
 /**
@@ -41,6 +42,9 @@ public class PuzzleGUI extends javax.swing.JFrame {
     BufferedImage[] slices;
     JButton[] buttons;
     private File f;
+    int sumOfCorrectParts = 0;
+    int failture = 0;
+    Score scoreClass;
 
     public PuzzleGUI(String s) {
         initComponents();
@@ -51,6 +55,12 @@ public class PuzzleGUI extends javax.swing.JFrame {
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         setFilePath(s);
         readImage();
+        scoreClass = new Score();
+        scoreClass.setScore(0);
+        scoreClass.readFile();
+        usernamelb.setText("Username: " + scoreClass.getUsername());
+        scorelb.setText("Score: " + scoreClass.getScore());
+        highscorelb.setText("High Score: " + scoreClass.getHighScore());
     }
 
     /**
@@ -81,6 +91,9 @@ public class PuzzleGUI extends javax.swing.JFrame {
         mixUp = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton17 = new javax.swing.JButton();
+        usernamelb = new javax.swing.JLabel();
+        scorelb = new javax.swing.JLabel();
+        highscorelb = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -180,7 +193,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             }
         });
 
-        mixUp.setText("Karıştır");
+        mixUp.setText("Mix");
         mixUp.setActionCommand("");
         mixUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,6 +207,15 @@ public class PuzzleGUI extends javax.swing.JFrame {
                 jButton17ActionPerformed(evt);
             }
         });
+
+        usernamelb.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        usernamelb.setText("jLabel2");
+
+        scorelb.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        scorelb.setText("jLabel3");
+
+        highscorelb.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        highscorelb.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -226,17 +248,23 @@ public class PuzzleGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(mixUp, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(mixUp, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(204, 204, 204)
-                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usernamelb)
+                            .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scorelb)
+                            .addComponent(highscorelb))))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(212, 212, 212)
@@ -272,14 +300,18 @@ public class PuzzleGUI extends javax.swing.JFrame {
                     .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(mixUp, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mixUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(usernamelb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scorelb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(highscorelb))
+                    .addComponent(jButton17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -290,8 +322,8 @@ public class PuzzleGUI extends javax.swing.JFrame {
     }
 
     public void readImage() {
-        int width = 640;    //width of the image
-        int height = 640;   //height of the image
+        final int width = 640;
+        final int height = 640;
         BufferedImage image = null;
 
         //read image
@@ -300,27 +332,22 @@ public class PuzzleGUI extends javax.swing.JFrame {
             image = ImageIO.read(f);
             System.out.println("Reading complete.");
             File output = new File("output.jpg");
-            Image newImage = image.getScaledInstance(640, 640, Image.SCALE_DEFAULT);
+            Image newImage = image.getScaledInstance(width, height, Image.SCALE_DEFAULT);
             ImageIO.write(toBufferedImage(newImage), "jpg", output);
             //jLabel1.setIcon(new ImageIcon(image.getScaledInstance(640, 640, image.SCALE_DEFAULT)));
             File f2 = new File("output.jpg"); //image file path
             BufferedImage image2 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
             image2 = ImageIO.read(f2);
-            System.out.println(image2.getWidth() + " " + image2.getHeight());
-            int w = 160;
-            int h = 160;
+
+            final int w = 160;
+            final int h = 160;
             final int rows = 4;
             final int cols = 4;
             slices = new BufferedImage[rows * cols];
 
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < cols; j++) {
-                    slices[(i * cols) + j] = image2.getSubimage(
-                            j * w,
-                            i * h,
-                            w,
-                            h
-                    );
+                    slices[(i * cols) + j] = image2.getSubimage(j * w, i * h, w, h);
                 }
             }
 
@@ -348,14 +375,12 @@ public class PuzzleGUI extends javax.swing.JFrame {
 
     public static boolean compareImage(BufferedImage fileA, BufferedImage fileB) {
         try {
-            // take buffer data from botm image files //
             BufferedImage biA = fileA;
             DataBuffer dbA = biA.getData().getDataBuffer();
             int sizeA = dbA.getSize();
             BufferedImage biB = fileB;
             DataBuffer dbB = biB.getData().getDataBuffer();
             int sizeB = dbB.getSize();
-            // compare data-buffer objects //
             if (sizeA == sizeB) {
                 for (int i = 0; i < sizeA; i++) {
                     if (dbA.getElem(i) != dbB.getElem(i)) {
@@ -372,6 +397,131 @@ public class PuzzleGUI extends javax.swing.JFrame {
         }
     }
 
+    /*
+    public void controlCorrectParts(){
+        int sumOfCorrectPartsLocal = 0;
+        for(int i = 0; i < originalBtnImg.size(); i++){
+            ImageIcon yourImage = (ImageIcon) buttons[i].getIcon();
+            Image img = yourImage.getImage();
+            BufferedImage buffered = (BufferedImage) img;
+            if(compareImage(buffered, originalBtnImg.get(buttons[i]))){
+                sumOfCorrectPartsLocal++;
+            }
+        }
+        System.out.println("Sum of correct parts : " + sumOfCorrectParts);
+        System.out.println("Sum of local correct parts : " + sumOfCorrectPartsLocal);
+        System.out.println("Total failture: " + failture);
+        System.out.println("------------");
+        if(sumOfCorrectPartsLocal > sumOfCorrectParts){  
+            if(failture == 0)
+                score += Math.abs(sumOfCorrectPartsLocal - sumOfCorrectParts) * 6.25;
+            else{
+                double addValue = 0;
+                if(failture < 12)
+                    addValue = Math.abs(sumOfCorrectPartsLocal - sumOfCorrectParts) * 6.25 - (failture * 0.5);
+                else
+                    addValue = Math.abs(sumOfCorrectPartsLocal - sumOfCorrectParts) * 6.25 - (5.75);
+                score += addValue;
+                System.out.println("Add value: " + addValue);
+            }
+            if(score > 100)
+                score = 100;
+        }else if(sumOfCorrectPartsLocal <= sumOfCorrectParts){
+            
+            if(Math.abs(sumOfCorrectPartsLocal - sumOfCorrectParts) == 0)
+                score -= 10;
+            score -= Math.abs(sumOfCorrectPartsLocal - sumOfCorrectParts) * 10;
+            if(score < 0)
+                score = 0;
+        }
+        sumOfCorrectParts = 0;
+        for(int i = 0; i < originalBtnImg.size(); i++){
+            ImageIcon yourImage = (ImageIcon) buttons[i].getIcon();
+            Image img = yourImage.getImage();
+            BufferedImage buffered = (BufferedImage) img;
+            if(compareImage(buffered, originalBtnImg.get(buttons[i]))){
+                sumOfCorrectParts++;
+            }
+        }
+        //System.out.println("Sum of correct parts : " + sumOfCorrectParts);
+        System.out.println("score: " + score);
+    }
+     */
+    public boolean isSolved() {
+        int sumOfCorrectPartsLocal = 0;
+        for (int i = 0; i < originalBtnImg.size(); i++) {
+            ImageIcon yourImage = (ImageIcon) buttons[i].getIcon();
+            Image img = yourImage.getImage();
+            BufferedImage buffered = (BufferedImage) img;
+            if (compareImage(buffered, originalBtnImg.get(buttons[i]))) {
+                sumOfCorrectPartsLocal++;
+            }
+        }
+        if (sumOfCorrectPartsLocal == 16) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public int totalCorrectParts(){
+        int sumOfCorrectPartsLocal = 0;
+        for (int i = 0; i < originalBtnImg.size(); i++) {
+            ImageIcon yourImage = (ImageIcon) buttons[i].getIcon();
+            Image img = yourImage.getImage();
+            BufferedImage buffered = (BufferedImage) img;
+            if (compareImage(buffered, originalBtnImg.get(buttons[i]))) {
+                sumOfCorrectPartsLocal++;
+            }
+        }
+        return sumOfCorrectPartsLocal;
+    }
+
+    public void finalizePuzzle() {
+        JOptionPane.showMessageDialog(null, "Puzzle solved!");
+        for (int i = 0; i < buttons.length; i++) {
+            buttons[i].setEnabled(false);
+        }
+        scoreClass.writeFile();
+    }
+
+    public void controlCorrectParts() {
+        sumOfCorrectParts = 0;
+        for (int i = 0; i < clickedButtons.size(); i++) {
+            ImageIcon yourImage = (ImageIcon) clickedButtons.get(i).getIcon();
+            Image img = yourImage.getImage();
+            BufferedImage buffered = (BufferedImage) img;
+            if (compareImage(buffered, originalBtnImg.get(clickedButtons.get(i)))) {
+                sumOfCorrectParts++;
+            }
+        }
+        if (sumOfCorrectParts == 0) {
+            scoreClass.minusScore(10);
+            failture++;
+        } else {
+            double addValue = 0;
+            if (failture < 12) {
+                addValue = 6.25 - (failture * 0.5);
+            } else {
+                addValue = 6.25 - (5.75);
+            }
+            scoreClass.plusScore(addValue);
+        }
+        if (scoreClass.getScore() > 100) {
+            scoreClass.setScore(100);
+        } else if (scoreClass.getScore() < 0) {
+            scoreClass.setScore(0);
+        }
+        System.out.println("Failture: " + failture);
+        System.out.println("Score: " + scoreClass.getScore());
+        scoreClass.highScoreCompare();
+        scorelb.setText("Score: " + scoreClass.getScore());
+        highscorelb.setText("High Score: " + scoreClass.getHighScore());
+        if (isSolved()) {
+            finalizePuzzle();
+        }
+    }
+
     private void mixUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mixUpActionPerformed
         // TODO add your handling code here:
         for (int i = 0; i < slices.length; i++) {
@@ -380,34 +530,42 @@ public class PuzzleGUI extends javax.swing.JFrame {
         }
 
         int correctCounter = 0;
-        do {
-            ArrayList<BufferedImage> slicesAL = new ArrayList<BufferedImage>();
-            for (int i = 0; i < slices.length; i++) {
-                slicesAL.add(slices[i]);
+        ArrayList<BufferedImage> slicesAL = new ArrayList<BufferedImage>();
+        for (int i = 0; i < slices.length; i++) {
+            slicesAL.add(slices[i]);
+        }
+        int slicesALLength = 16;
+        for (int i = 0; i < buttons.length; i++) {
+            Random rnd = new Random();
+            int gonnaRemove = rnd.nextInt(slicesALLength);
+            //System.out.println(gonnaRemove + " , " + gonnaRemove);
+            buttons[i].setIcon(new ImageIcon(slicesAL.get(gonnaRemove)));
+            slicesAL.remove(gonnaRemove);
+            slicesALLength--;
+        }
+        for (int i = 0; i < buttons.length; i++) {
+            ImageIcon yourImage = (ImageIcon) buttons[i].getIcon();
+            Image img = yourImage.getImage();
+            BufferedImage buffered = (BufferedImage) img;
+            if (compareImage(buffered, originalBtnImg.get(buttons[i]))) {
+                correctCounter++;
+                System.out.println("Correct picture in button" + (i + 1));
             }
-            correctCounter = 0;
-            int slicesALLength = 16;
-            for (int i = 0; i < buttons.length; i++) {
-                Random rnd = new Random();
-                int gonnaRemove = rnd.nextInt(slicesALLength);
-                //System.out.println(gonnaRemove + " , " + gonnaRemove);
-                buttons[i].setIcon(new ImageIcon(slicesAL.get(gonnaRemove)));
-                slicesAL.remove(gonnaRemove);
-                slicesALLength--;
-            }
-            for (int i = 0; i < buttons.length; i++) {
-                ImageIcon yourImage = (ImageIcon) buttons[i].getIcon();
-                Image img = yourImage.getImage();
-                BufferedImage buffered = (BufferedImage) img;
-                if (compareImage(buffered, originalBtnImg.get(buttons[i]))) {
-                    correctCounter++;
-                    System.out.println("Correct picture in button" + (i + 1));
-                }
-            }
-        } while (correctCounter == 0);
+        }
+        if (correctCounter != 0) {
+            JOptionPane.showMessageDialog(null, "Some parts of the puzzle is in "
+                    + "the correct location. There is no need to mix puzzle anymore. (Mix button disabled.)");
+            mixUp.setEnabled(false);
+        }
         System.out.println("-------");
+        scoreClass.setScore(0);
+        scoreClass.plusScore(totalCorrectParts() * 6.25);
+        scoreClass.highScoreCompare();
+        scorelb.setText("Score: " + scoreClass.getScore());
+        highscorelb.setText("High Score: " + scoreClass.getHighScore());
+        if(isSolved())
+            finalizePuzzle();
         //jButton1.setIcon(new ImageIcon(slices[0]));
-
     }//GEN-LAST:event_mixUpActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -420,6 +578,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
 
@@ -435,6 +594,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -449,6 +609,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -463,6 +624,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -477,6 +639,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -491,6 +654,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -505,6 +669,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -519,6 +684,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -533,6 +699,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -547,6 +714,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -561,6 +729,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton11ActionPerformed
@@ -575,6 +744,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton12ActionPerformed
@@ -589,6 +759,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton13ActionPerformed
@@ -603,6 +774,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton14ActionPerformed
@@ -617,6 +789,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton15ActionPerformed
@@ -631,6 +804,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
             Icon temp = clickedButtons.get(0).getIcon();
             clickedButtons.get(0).setIcon(clickedButtons.get(1).getIcon());
             clickedButtons.get(1).setIcon(temp);
+            controlCorrectParts();
             clickedButtons.clear();
         }
     }//GEN-LAST:event_jButton16ActionPerformed
@@ -654,12 +828,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                slices[(i * cols) + j] = image2.getSubimage(
-                        j * w,
-                        i * h,
-                        w,
-                        h
-                );
+                slices[(i * cols) + j] = image2.getSubimage(j * w, i * h, w, h);
             }
         }
 
@@ -685,18 +854,18 @@ public class PuzzleGUI extends javax.swing.JFrame {
             originalBtnImg.put(buttons[i], slices[i]);
             buttons[i].setIcon(new ImageIcon(slices[i]));
         }
-
+        if(isSolved())
+            finalizePuzzle();
     }//GEN-LAST:event_jButton17ActionPerformed
 
-    private static BufferedImage toBufferedImage(Image src) {
-        int w = src.getWidth(null);
-        int h = src.getHeight(null);
-        int type = BufferedImage.TYPE_INT_RGB; // other options 
-        BufferedImage dest = new BufferedImage(w, h, type);
-        Graphics2D g2 = dest.createGraphics();
-        g2.drawImage(src, 0, 0, null);
-        g2.dispose();
-        return dest;
+    private static BufferedImage toBufferedImage(Image img) {
+        int width = img.getWidth(null);
+        int height = img.getHeight(null);
+        BufferedImage bufferedImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        Graphics2D graphic = bufferedImg.createGraphics();
+        graphic.drawImage(img, 0, 0, null);
+        graphic.dispose();
+        return bufferedImg;
     }
 
     /**
@@ -704,6 +873,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel highscorelb;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -723,5 +893,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton mixUp;
+    private javax.swing.JLabel scorelb;
+    private javax.swing.JLabel usernamelb;
     // End of variables declaration//GEN-END:variables
 }

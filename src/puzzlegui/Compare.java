@@ -93,8 +93,7 @@ public class Compare extends javax.swing.JFrame {
                 
               }catch (IOException e) {
             e.printStackTrace();
-        }
-              
+        }     
     }//GEN-LAST:event_jButton1ActionPerformed
     
     public static boolean compareImage(File fileA, File fileB) {        

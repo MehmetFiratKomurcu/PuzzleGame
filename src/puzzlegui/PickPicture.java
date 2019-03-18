@@ -41,9 +41,12 @@ public class PickPicture extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        usernametf = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jButton1.setText("Browse");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,25 +57,38 @@ public class PickPicture extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel1.setText("Please select your picture:");
 
+        usernametf.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel2.setText("User Name:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(usernametf)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usernametf, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -87,27 +103,33 @@ public class PickPicture extends javax.swing.JFrame {
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser file = new JFileChooser();
-        file.setCurrentDirectory(new File(System.getProperty("user.dir")));
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "png");
-        file.addChoosableFileFilter(filter);
-        file.setAcceptAllFileFilterUsed(false);
-        int result = file.showSaveDialog(null);
-        //if the user click on save in Jfilechooser
-        if (result == JFileChooser.APPROVE_OPTION) {
-            System.out.println("You chose to open this file: " + file.getSelectedFile().getName());
-            String extension = FilenameUtils.getExtension(file.getSelectedFile().getName());
-            if (!extension.equalsIgnoreCase("jpg") && !extension.equalsIgnoreCase("png")) {
-                JOptionPane.showMessageDialog(null, "Invalid file extension.");
-            } else {
-                File selectedFile = file.getSelectedFile();
-                String path = selectedFile.getAbsolutePath();
-                //jLabel1.setIcon(ResizeImage(path));
-                new PuzzleGUI(path).setVisible(true);
-                dispose();
+        if (usernametf.getText().contains(",")) {
+            JOptionPane.showMessageDialog(null, "Username should not contain comma(,)");
+        } else if(usernametf.getText().equals("") || usernametf.getText().contains(" ")){
+            JOptionPane.showMessageDialog(null, "Username should not contain space.");
+        } else {
+            JFileChooser file = new JFileChooser();
+            file.setCurrentDirectory(new File(System.getProperty("user.dir")));
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "png");
+            file.addChoosableFileFilter(filter);
+            file.setAcceptAllFileFilterUsed(false);
+            int result = file.showSaveDialog(null);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                System.out.println("You chose to open this file: " + file.getSelectedFile().getName());
+                String extension = FilenameUtils.getExtension(file.getSelectedFile().getName());
+                if (!extension.equalsIgnoreCase("jpg") && !extension.equalsIgnoreCase("png")) {
+                    JOptionPane.showMessageDialog(null, "Invalid file extension.");
+                } else {
+                    File selectedFile = file.getSelectedFile();
+                    String path = selectedFile.getAbsolutePath();
+                    //jLabel1.setIcon(ResizeImage(path));
+                    new Score().setUsername(usernametf.getText());
+                    new PuzzleGUI(path).setVisible(true);
+                    dispose();
+                }
+            } else if (result == JFileChooser.CANCEL_OPTION) {
+                System.out.println("No File Select");
             }
-        } else if (result == JFileChooser.CANCEL_OPTION) {
-            System.out.println("No File Select");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -150,5 +172,7 @@ public class PickPicture extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField usernametf;
     // End of variables declaration//GEN-END:variables
 }
