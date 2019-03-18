@@ -110,14 +110,14 @@ public class PickPicture extends javax.swing.JFrame {
         } else {
             JFileChooser file = new JFileChooser();
             file.setCurrentDirectory(new File(System.getProperty("user.dir")));
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "png");
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "png","bmp");
             file.addChoosableFileFilter(filter);
             file.setAcceptAllFileFilterUsed(false);
             int result = file.showSaveDialog(null);
             if (result == JFileChooser.APPROVE_OPTION) {
                 System.out.println("You chose to open this file: " + file.getSelectedFile().getName());
                 String extension = FilenameUtils.getExtension(file.getSelectedFile().getName());
-                if (!extension.equalsIgnoreCase("jpg") && !extension.equalsIgnoreCase("png")) {
+                if (!extension.equalsIgnoreCase("jpg") && !extension.equalsIgnoreCase("png") && !extension.equalsIgnoreCase("bmp")) {
                     JOptionPane.showMessageDialog(null, "Invalid file extension.");
                 } else {
                     File selectedFile = file.getSelectedFile();

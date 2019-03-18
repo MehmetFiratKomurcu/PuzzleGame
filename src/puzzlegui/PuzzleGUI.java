@@ -412,6 +412,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].setEnabled(false);
         }
+        mixUp.setEnabled(false);
         if(scoreClass.getScore() > scoreClass.getHighScore()){
             highscorelb.setText("High Score: " + scoreClass.getScore());
         }else{
