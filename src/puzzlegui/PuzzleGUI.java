@@ -43,7 +43,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
     JButton[] buttons;
     private File f;
     int sumOfCorrectParts = 0;
-    int failture = 0;
+    int failure = 0;
     Score scoreClass;
 
     public PuzzleGUI(String s) {
@@ -64,7 +64,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
         usernamelb.setText("Username: " + scoreClass.getUsername());
         scorelb.setText("Score: " + scoreClass.getScore());
         highscorelb.setText("High Score: " + scoreClass.getHighScore());
-        faillb.setText("Total failture: " + failture);
+        faillb.setText("Total failure: " + failure);
     }
 
     /**
@@ -340,15 +340,15 @@ public class PuzzleGUI extends javax.swing.JFrame {
         }
         System.out.println("Sum of correct parts : " + sumOfCorrectParts);
         System.out.println("Sum of local correct parts : " + sumOfCorrectPartsLocal);
-        System.out.println("Total failtureture: " + failture);
+        System.out.println("Total failureture: " + failure);
         System.out.println("------------");
         if(sumOfCorrectPartsLocal > sumOfCorrectParts){  
-            if(failture == 0)
+            if(failure == 0)
                 score += Math.abs(sumOfCorrectPartsLocal - sumOfCorrectParts) * 6.25;
             else{
                 double addValue = 0;
-                if(failture < 12)
-                    addValue = Math.abs(sumOfCorrectPartsLocal - sumOfCorrectParts) * 6.25 - (failture * 0.5);
+                if(failure < 12)
+                    addValue = Math.abs(sumOfCorrectPartsLocal - sumOfCorrectParts) * 6.25 - (failure * 0.5);
                 else
                     addValue = Math.abs(sumOfCorrectPartsLocal - sumOfCorrectParts) * 6.25 - (5.75);
                 score += addValue;
@@ -418,7 +418,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
         }else{
             highscorelb.setText("High Score: " + scoreClass.getHighScore());
         }
-        faillb.setText("Total failture: " + failture);
+        faillb.setText("Total failure: " + failure);
         scoreClass.writeFile();
     }
 
@@ -434,11 +434,11 @@ public class PuzzleGUI extends javax.swing.JFrame {
         }
         if (sumOfCorrectParts == 0) {
             scoreClass.minusScore(10);
-            failture++;
+            failure++;
         } else {
             double addValue = 0;
-            if (failture < 12) {
-                addValue = (sumOfCorrectParts * 6.25) - (failture * 0.5);
+            if (failure < 12) {
+                addValue = (sumOfCorrectParts * 6.25) - (failure * 0.5);
             } else {
                 addValue = (sumOfCorrectParts * 6.25) - (5.75);
             }
@@ -449,7 +449,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
         } else if (scoreClass.getScore() < 0) {
             scoreClass.setScore(0);
         }
-        System.out.println("Failture: " + failture);
+        System.out.println("Failure: " + failure);
         System.out.println("Score: " + scoreClass.getScore());
         scorelb.setText("Score: " + scoreClass.getScore());
         if(scoreClass.getScore() > scoreClass.getHighScore()){
@@ -457,7 +457,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
         }else{
             highscorelb.setText("High Score: " + scoreClass.getHighScore());
         }
-        faillb.setText("Total failture: " + failture);
+        faillb.setText("Total failure: " + failure);
         if (isSolved()) {
             finalizePuzzle();
         }
@@ -507,7 +507,7 @@ public class PuzzleGUI extends javax.swing.JFrame {
         }else{
             highscorelb.setText("High Score: " + scoreClass.getHighScore());
         }
-        faillb.setText("Total failture: " + failture);
+        faillb.setText("Total failure: " + failure);
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].setEnabled(true);
         }
