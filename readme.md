@@ -21,9 +21,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Authors
-:bust_in_silhouette: Mehmet Fırat KÖMÜRCÜ
+:bust_in_silhouette: [Mehmet Fırat KÖMÜRCÜ](https://github.com/MehmetFiratKomurcu)
 
-:bust_in_silhouette: Ali Recep KARACA
+:bust_in_silhouette: [Ali Recep KARACA](https://github.com/recepkaraca)
 
 ## Project Status
 
